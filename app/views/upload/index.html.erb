@@ -1,0 +1,22 @@
+<% unless @filename.nil? %>
+	<% unless @host_packets.empty? %>
+		<div id="loading" class="loader"></div>
+		<div id="chart-title"><span><%= @filename %></span></div>
+		<div id="chart" data-file="<%= params[:file] %>" data-largest-total-packets="<%= @largest_total_packets %>" data-packet-average="<%= @average_packet_size %>"></div>
+	<% end %>
+<% end %>
+
+<div class="row collapse">
+	<div class="small-12 columns">
+		<table id="chart-data"></table>
+
+		<div class="callout success text-center">
+			<p>Drag & Drop or Click the Area Below to Upload Your PCAP File</p>
+		</div>
+
+		<form id="uploadform" class="animated tada" action="/upload/create" data-csrf="<%= form_authenticity_token %>">
+			<i class="fa fa-cloud-upload fa-5x breathing"></i>
+			<div class="loader"></div>
+		</form>
+	</div>
+</div>

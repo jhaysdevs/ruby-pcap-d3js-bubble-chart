@@ -1,0 +1,156 @@
+== vPCAP Packet Visualizer
+
+A simple web application that allows users to upload a PCAP file and visualize that file according to the specifications listed in the section below. This project was written in Ruby 2.3.1, Rails 3.2.22, and was developed/tested using tshark 2.2.0.
+
+
+== Project Requirements
+
+1. Create a simple web app that will take an uploaded PCAP, extract statistics from it, and then create a simple bubble chart with table off the data.
+2. From the PCAP, extract the following with tshark and ruby:
+     • All Hosts from the Host Field in the HTTP conversations (there should be 19 unique domains and 3 IP addresses)
+     • For each unique host, collect the associated packets and build the following statistics:
+        • Average packet size
+        • Total packet count for conversations involving that host
+3. Present the user with a bubble chart using d3.js that has a bubble for each host, the average packet size along the x-axis, and the size of the bubble is set by the total packet count. When the user clicks a bubble it should display the associated packets in a table below the chart.
+
+
+== System Requirements
+
+1. Ruby 2.3.1
+2. Rails 3.2.22
+3. Tshark 2.2.0
+
+
+== Getting Started
+
+1. Clone the repository:
+    git clone git@github.com:jphase/Ruby-PCAP-Bubble-Chart.git
+
+2. Change directory to Ruby-PCAP-Bubble-Chart
+    cd Ruby-PCAP-Bubble-Chart
+
+3. Use bundle install to install depencies
+    bundle install
+
+4. Rename the config/initializers/secret_token.rb.example file to config/intializers/secret_token.rb and edit the contents:
+    mv config/initializers/secret_token.rb.example config/initializers/secret_token.rb
+
+5. Edit line 7 of the secret_token.rb file from step 4 above and paste in the output of the following command accordingly:
+    rake secret
+
+6. Save your changes, change directories to your app's document root, and start the rails server
+    rails server
+
+7. Browse to http://localhost:3000 and upload a PCAP file!
+
+
+== Description of Contents
+
+The default directory structure of a generated Ruby on Rails application:
+
+  |-- app
+  |   |-- assets
+  |   |   |-- images
+  |   |   |-- javascripts
+  |   |   `-- stylesheets
+  |   |-- controllers
+  |   |-- helpers
+  |   |-- mailers
+  |   |-- models
+  |   `-- views
+  |       `-- layouts
+  |-- config
+  |   |-- environments
+  |   |-- initializers
+  |   `-- locales
+  |-- db
+  |-- doc
+  |-- lib
+  |   |-- assets
+  |   `-- tasks
+  |-- log
+  |-- public
+  |   |-- uploads
+  |-- script
+  |-- test
+  |   |-- fixtures
+  |   |-- functional
+  |   |-- integration
+  |   |-- performance
+  |   `-- unit
+  |-- tmp
+  |   `-- cache
+  |       `-- assets
+  `-- vendor
+      |-- assets
+      |   |-- javascripts
+      |   `-- stylesheets
+      `-- plugins
+
+app
+  Holds all the code that's specific to this particular application.
+
+app/assets
+  Contains subdirectories for images, stylesheets, and JavaScript files.
+
+app/controllers
+  Holds controllers that should be named like weblogs_controller.rb for
+  automated URL mapping. All controllers should descend from
+  ApplicationController which itself descends from ActionController::Base.
+
+app/models
+  Holds models that should be named like post.rb. Models descend from
+  ActiveRecord::Base by default.
+
+app/views
+  Holds the template files for the view that should be named like
+  weblogs/index.html.erb for the WeblogsController#index action. All views use
+  eRuby syntax by default.
+
+app/views/layouts
+  Holds the template files for layouts to be used with views. This models the
+  common header/footer method of wrapping views. In your views, define a layout
+  using the <tt>layout :default</tt> and create a file named default.html.erb.
+  Inside default.html.erb, call <% yield %> to render the view using this
+  layout.
+
+app/helpers
+  Holds view helpers that should be named like weblogs_helper.rb. These are
+  generated for you automatically when using generators for controllers.
+  Helpers can be used to wrap functionality for your views into methods.
+
+config
+  Configuration files for the Rails environment, the routing map, the database,
+  and other dependencies.
+
+db
+  Contains the database schema in schema.rb. db/migrate contains all the
+  sequence of Migrations for your schema.
+
+doc
+  This directory is where your application documentation will be stored when
+  generated using <tt>rake doc:app</tt>
+
+lib
+  Application specific libraries. Basically, any kind of custom code that
+  doesn't belong under controllers, models, or helpers. This directory is in
+  the load path.
+
+public
+  The directory available for the web server. Also contains the dispatchers and the
+  default HTML files. This should be set as the DOCUMENT_ROOT of your web
+  server. The uploads directory within the public directory are where you PCAP files
+  are stored.
+
+script
+  Helper scripts for automation and generation.
+
+test
+  Unit and functional tests along with fixtures. When using the rails generate
+  command, template test files will be generated for you and placed in this
+  directory.
+
+vendor
+  External libraries that the application depends on. Also includes the plugins
+  subdirectory. If the app has frozen rails, those gems also go here, under
+  vendor/rails/. This directory is in the load path.
